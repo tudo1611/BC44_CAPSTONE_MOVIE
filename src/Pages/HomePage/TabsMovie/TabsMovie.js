@@ -24,22 +24,24 @@ export default function TabsMovie() {
   let renderDsPhim = (danhSachPhim) => {
     return danhSachPhim.slice(0, 8).map((phim) => {
       return (
-        <div key={phim.maPhim} className="p-5 grid grid-cols-4 gap-5">
+        <div key={phim.maPhim} className="p-5 grid grid-cols-5 gap-3">
           <img
             src={phim.hinhAnh}
             className="h-40 w-32 object-cover col-span-1"
             alt=""
           />
-          <div className="col-span-3">
-            <div className="grid grid-cols-4 w-full gap-5">
+          <div className="col-span-4">
+            <div className="grid grid-cols-4 w-full gap-3">
               {phim.lstLichChieuTheoPhim.map((lichChieu) => {
                 //moment js
                 return (
                   <div
                     key={lichChieu.maLichChieu}
-                    className=" bg-red-400 text-white rounded h-10 leading-10 text-center "
+                    className=" bg-green-400 text-white rounded h-10 leading-10 text-center "
                   >
-                    {moment(lichChieu.ngayChieuGioChieu).format("DD/MM/YY")}
+                    {moment(lichChieu.ngayChieuGioChieu).format(
+                      "DD/MM/YY-hh:mm"
+                    )}
                   </div>
                 );
               })}
@@ -66,7 +68,7 @@ export default function TabsMovie() {
               return {
                 key: index,
                 label: (
-                  <div className="text-left w-80 whitespace-normal">
+                  <div className="text-left w-60 whitespace-normal">
                     <p className="text-green-600 font-bold">
                       {cumRap.tenCumRap}
                     </p>
