@@ -2,14 +2,22 @@ import React, { useEffect, useState } from "react";
 import { https } from "../../../service/config";
 import { Tabs } from "antd";
 import moment from "moment/moment";
+import { NavLink } from "react-router-dom";
+import Checkout from "../../Checkout/Checkout";
 const onChange = (key) => {
   console.log(key);
 };
 
 export default function TabsMovie() {
+  // const localSignUp = localStorage.getItem("signUp");
+  // const [showCheckout, setShowCheckout] = useState(false);
+
   const [heThongRap, setHeThongRap] = useState([]);
   // /api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01
   useEffect(() => {
+    // if(localSignUp){
+    //   setShowCheckout(true);
+    // }
     https
       .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01")
       .then((res) => {
@@ -35,14 +43,15 @@ export default function TabsMovie() {
               {phim.lstLichChieuTheoPhim.map((lichChieu) => {
                 //moment js
                 return (
-                  <div
+                  <NavLink
+                    to={"/checkout"}
                     key={lichChieu.maLichChieu}
                     className=" bg-green-400 text-white rounded h-10 leading-10 text-center "
                   >
                     {moment(lichChieu.ngayChieuGioChieu).format(
                       "DD/MM/YY-hh:mm"
                     )}
-                  </div>
+                  </NavLink>
                 );
               })}
             </div>

@@ -9,6 +9,8 @@ import Contacts from "./Pages/Contacts/Contacts";
 import News from "./Pages/News/News";
 import Checkout from "./Pages/Checkout/Checkout";
 import Spinner from "./Components/Spinner/Spinner";
+import Layout from "./Components/Layout/Layout";
+import Register from "./Components/Register/Register";
 function App() {
   return (
     <div>
@@ -17,10 +19,15 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/detail/:id" element={<DetailPage />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/detail/:id"
+            element={<Layout contentPage={<DetailPage />} />}
+          />
           <Route path="/contact" element={<Contacts />} />
           <Route path="/news" element={<News />} />
           <Route path="/checkout" element={<Checkout />} />
+
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<Navigate to={"/404"} />} />
         </Routes>

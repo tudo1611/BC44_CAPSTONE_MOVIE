@@ -10,6 +10,7 @@ export let https = axios.create({
   },
 });
 
+export const USER_LOGIN = "USER_LOGIN";
 // -----interceptor axios-------
 
 // Add a request interceptor
@@ -24,7 +25,7 @@ https.interceptors.request.use(
   function (error) {
     // Do something with request error
     //bật loading
-    store.dispatch(batLoading());
+    store.dispatch(tatLoading());
     return Promise.reject(error);
   }
 );

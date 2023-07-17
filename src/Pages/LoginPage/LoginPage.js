@@ -29,7 +29,7 @@ export default function LoginPage() {
           navigate("/");
         }, 2000);
         //redux
-        //localStoreage
+        //localStorage
       })
       .catch((err) => {
         console.log("err: ", err);

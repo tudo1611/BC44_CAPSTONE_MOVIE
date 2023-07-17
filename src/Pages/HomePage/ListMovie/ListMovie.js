@@ -38,7 +38,7 @@ export default function ListMovie() {
             className="w-full mt-3 inline-block text-center rounded py-2 bg-green-400 text-black transition duration-500 cursor-pointer hover:scale-75"
             to={`/detail/${maPhim}`}
           >
-            Đặt Vé
+            Detail
           </NavLink>
         </Card>
       );

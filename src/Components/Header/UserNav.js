@@ -31,7 +31,15 @@ export default function UserNav() {
           >
             Log in
           </button>
-          <button className={btnClass}>Register</button>
+          <button
+            onClick={() => {
+              window.location.href = "/register";
+              localStorage.clear("signUp");
+            }}
+            className={btnClass}
+          >
+            Register
+          </button>
         </>
       );
     }

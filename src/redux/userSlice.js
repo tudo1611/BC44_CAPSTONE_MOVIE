@@ -6,6 +6,7 @@ const initialState = {
   //userInfo:null
   //sẽ được chạy khi user load trang
   userInfo: localServ.getUser(),
+  userSignUp: localServ.setUserSignUp(),
 };
 
 const userSlice = createSlice({
@@ -15,9 +16,12 @@ const userSlice = createSlice({
     setLogin: (state, action) => {
       state.userInfo = action.payload;
     },
+    setSignUp: (state, action) => {
+      state.userSignUp = action.payload;
+    },
   },
 });
 
-export const { setLogin } = userSlice.actions;
+export const { setLogin, setSignUp } = userSlice.actions;
 
 export default userSlice.reducer;
