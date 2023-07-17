@@ -6,9 +6,8 @@ import { NavLink } from "react-router-dom";
 import { https } from "../../service/config";
 import { useDispatch } from "react-redux";
 import { setSignUp } from "../../redux/userSlice";
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
+import { localServ } from "../../service/localStoreService";
+
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
@@ -17,12 +16,40 @@ const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [groupCode, setGroupCode] = useState("");
+  const [fullName, setFullName] = useState("");
   const [showHome, setShowHome] = useState(false);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
   const localSignUp = localStorage.getItem("signUp");
   const localEmail = localStorage.getItem("email");
+  const onFinish = (values) => {
+    console.log(name, email, password, phone, groupCode, fullName);
+    localStorage.setItem("name", name);
+    localStorage.setItem("email", email);
+    localStorage.setItem("password", password);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("groupCode", groupCode);
+    localStorage.setItem("fullName", fullName);
+    localStorage.setItem("signUp", email);
+    alert("Account created successfully!");
+
+    https
+      .post("/api/QuanLyNguoiDung/DangKy", values)
+      .then((res) => {
+        console.log("res: ", res);
+        dispatch(setSignUp(res.data.content));
+        localServ.setUserSignUp(res.data.content);
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+      });
+    console.log("Success:", values);
+
+    window.location.reload();
+  };
   useEffect(() => {
     if (localSignUp) {
       setShowHome(true);
@@ -30,27 +57,9 @@ const Register = () => {
     if (localEmail) {
       setShow(true);
     }
-    https
-      .post("/api/QuanLyNguoiDung/DangKy")
-      .then((res) => {
-        console.log("res: ", res);
-        dispatch(setSignUp(res.data.content));
-      })
-      .catch((err) => {
-        console.log("errRegister: ", err);
-      });
   }, []);
 
-  const registerHandle = () => {
-    console.log(name, email, password);
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
-    localStorage.setItem("signUp", email);
-    alert("Account created successfully!");
-
-    window.location.reload();
-  };
+  //   const registerHandle = () => {};
   return (
     <div>
       {showHome ? (
@@ -127,6 +136,51 @@ const Register = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Item>
+              <Form.Item
+                label="Phone"
+                name="soDT"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your phone!",
+                  },
+                ]}
+              >
+                <Input
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+              </Form.Item>
+              <Form.Item
+                label="Group code"
+                name="groupCode"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your group code!",
+                  },
+                ]}
+              >
+                <Input
+                  value={groupCode}
+                  onChange={(e) => setGroupCode(e.target.value)}
+                />
+              </Form.Item>
+              <Form.Item
+                label="Full Name"
+                name="fullName"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your fullname!",
+                  },
+                ]}
+              >
+                <Input
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+              </Form.Item>
 
               <Form.Item
                 wrapperCol={{
@@ -134,9 +188,7 @@ const Register = () => {
                   span: 16,
                 }}
               >
-                <Button onClick={registerHandle} htmlType="submit">
-                  Sign Up
-                </Button>
+                <Button htmlType="submit">Sign Up</Button>
               </Form.Item>
             </Form>
             <p className="mt-3">

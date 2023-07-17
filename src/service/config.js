@@ -10,14 +10,14 @@ export let https = axios.create({
   },
 });
 
-export const USER_LOGIN = "USER_LOGIN";
+// export const USER_LOGIN = "USER_LOGIN";
 // -----interceptor axios-------
 
 // Add a request interceptor
 https.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    console.log("đi");
+    // console.log("đi");
     //bật loading
     store.dispatch(batLoading());
     return config;
@@ -35,7 +35,7 @@ https.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
-    console.log("về");
+    // console.log("về");
     //tắt loading
     store.dispatch(tatLoading());
     return response;

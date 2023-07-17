@@ -21,7 +21,7 @@ export default function TabsMovie() {
     https
       .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01")
       .then((res) => {
-        console.log("res: ", res);
+        // console.log("res: ", res);
         setHeThongRap(res.data.content);
       })
       .catch((err) => {
