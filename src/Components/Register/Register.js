@@ -5,20 +5,21 @@ import LoginPage from "../../Pages/LoginPage/LoginPage";
 import { NavLink } from "react-router-dom";
 import { https } from "../../service/config";
 import { useDispatch } from "react-redux";
-import { setSignUp } from "../../redux/userSlice";
+import { setLogin } from "../../redux/userSlice";
 import { localServ } from "../../service/localStoreService";
+import "../../Pages/Checkout/Checkout.css";
 
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
-  const [groupCode, setGroupCode] = useState("");
-  const [fullName, setFullName] = useState("");
+  //   const [name, setName] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
+  //   const [phone, setPhone] = useState("");
+  //   const [groupCode, setGroupCode] = useState("");
+  //   const [fullName, setFullName] = useState("");
   const [showHome, setShowHome] = useState(false);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
@@ -26,29 +27,21 @@ const Register = () => {
   const localSignUp = localStorage.getItem("signUp");
   const localEmail = localStorage.getItem("email");
   const onFinish = (values) => {
-    console.log(name, email, password, phone, groupCode, fullName);
-    localStorage.setItem("name", name);
-    localStorage.setItem("email", email);
-    localStorage.setItem("password", password);
-    localStorage.setItem("phone", phone);
-    localStorage.setItem("groupCode", groupCode);
-    localStorage.setItem("fullName", fullName);
-    localStorage.setItem("signUp", email);
-    alert("Account created successfully!");
+    console.log("values: ", values);
 
     https
       .post("/api/QuanLyNguoiDung/DangKy", values)
       .then((res) => {
         console.log("res: ", res);
-        dispatch(setSignUp(res.data.content));
-        localServ.setUserSignUp(res.data.content);
+        dispatch(setLogin(res.data.content));
+        localServ.setLogin(res.data.content);
+        console.log("Success:", values);
       })
       .catch((err) => {
         console.log("err: ", err);
       });
-    console.log("Success:", values);
 
-    window.location.reload();
+    //     window.location.reload();
   };
   useEffect(() => {
     if (localSignUp) {
@@ -59,7 +52,6 @@ const Register = () => {
     }
   }, []);
 
-  //   const registerHandle = () => {};
   return (
     <div>
       {showHome ? (
@@ -67,8 +59,17 @@ const Register = () => {
       ) : show ? (
         <LoginPage />
       ) : (
-        <div className="bg-green-300 h-screen w-screen flex flex-col items-center justify-center">
-          <div className="container bg-white rounded-2xl p-10 flex flex-col items-center justify-center">
+        <div
+          style={{
+            position: "fixed",
+            width: "100%",
+            height: "100%",
+            backgroundImage: "url('./bgmovie.jpg')",
+            backgroundSize: "100%",
+          }}
+          className="bg-green-300 h-screen w-screen flex flex-col items-center justify-center"
+        >
+          <div className=" bg-white w-80 rounded-2xl py-5 flex flex-col items-center justify-center">
             <h3
               className="text-green-600 mb-5"
               style={{ fontSize: "30px", fontWeight: "bold" }}
@@ -103,7 +104,7 @@ const Register = () => {
                   },
                 ]}
               >
-                <Input value={name} onChange={(e) => setName(e.target.value)} />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -112,14 +113,11 @@ const Register = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your password!",
+                    message: "Please input your email!",
                   },
                 ]}
               >
-                <Input
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
+                <Input />
               </Form.Item>
               <Form.Item
                 label="Password"
@@ -131,10 +129,7 @@ const Register = () => {
                   },
                 ]}
               >
-                <Input.Password
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                <Input.Password />
               </Form.Item>
               <Form.Item
                 label="Phone"
@@ -146,10 +141,7 @@ const Register = () => {
                   },
                 ]}
               >
-                <Input
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
+                <Input />
               </Form.Item>
               <Form.Item
                 label="Group code"
@@ -161,10 +153,7 @@ const Register = () => {
                   },
                 ]}
               >
-                <Input
-                  value={groupCode}
-                  onChange={(e) => setGroupCode(e.target.value)}
-                />
+                <Input />
               </Form.Item>
               <Form.Item
                 label="Full Name"
@@ -176,10 +165,7 @@ const Register = () => {
                   },
                 ]}
               >
-                <Input
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -188,7 +174,13 @@ const Register = () => {
                   span: 16,
                 }}
               >
-                <Button htmlType="submit">Sign Up</Button>
+                <Button
+                  className="bg-green-500"
+                  style={{ fontWeight: "bold" }}
+                  htmlType="submit"
+                >
+                  Sign Up
+                </Button>
               </Form.Item>
             </Form>
             <p className="mt-3">

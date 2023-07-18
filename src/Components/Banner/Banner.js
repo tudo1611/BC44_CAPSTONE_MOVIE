@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { https } from "../../service/config";
 import { Carousel } from "antd";
+import { useDispatch } from "react-redux";
+import { addBanner } from "../../redux/bannerSlice";
 const contentStyle = {
-  height: "600px",
+  height: "580px",
   color: "#fff",
   lineHeight: "160px",
   textAlign: "center",
@@ -13,12 +15,14 @@ const contentStyle = {
 };
 export default function Banner() {
   const [banner, setBanner] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     https
       .get("/api/QuanLyPhim/LayDanhSachBanner")
       .then((res) => {
         console.log("res: ", res);
         setBanner(res.data.content);
+        dispatch(addBanner(res.data));
       })
       .catch((err) => {
         console.log("err: ", err);
@@ -40,7 +44,9 @@ export default function Banner() {
   };
   return (
     <div>
-      <Carousel effect="fade">{renderBanner()}</Carousel>
+      <Carousel autoplay effect="fade">
+        {renderBanner()}
+      </Carousel>
     </div>
   );
 }

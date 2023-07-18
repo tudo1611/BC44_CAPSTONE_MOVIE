@@ -26,8 +26,7 @@ function App() {
           />
           <Route path="/contact" element={<Contacts />} />
           <Route path="/news" element={<News />} />
-          <Route path="/checkout" element={<Checkout />} />
-
+          <Route path="/checkout/:maLichChieu" element={<Checkout />} />
           <Route path="/404" element={<NotFoundPage />} />
           <Route path="*" element={<Navigate to={"/404"} />} />
         </Routes>

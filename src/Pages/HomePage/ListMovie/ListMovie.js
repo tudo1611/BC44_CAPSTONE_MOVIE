@@ -5,15 +5,19 @@ import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useDispatch } from "react-redux";
+import { addMovies } from "../../../redux/movieSlice";
 const { Meta } = Card;
 export default function ListMovie() {
   const [movieArr, setMovieArr] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
     https
-      .get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP08")
+      .get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01")
       .then((res) => {
-        //   console.log("res: ", res);
+        console.log("res: ", res);
         setMovieArr(res.data.content);
+        dispatch(addMovies(res.data.content));
       })
       .catch((err) => {
         console.log("err: ", err);
@@ -30,12 +34,12 @@ export default function ListMovie() {
             width: 240,
           }}
           cover={
-            <img className="h-80 object-cover" alt="example" src={hinhAnh} />
+            <img className="h-60 object-cover" alt="example" src={hinhAnh} />
           }
         >
-          <Meta title={tenPhim} className="text-center" />
+          <Meta title={tenPhim} className="text-center pb-2" />
           <NavLink
-            className="w-full mt-3 inline-block text-center rounded py-2 bg-green-400 text-black transition duration-500 cursor-pointer hover:scale-75"
+            className="w-full inline-block text-center py-2 bg-green-400 text-black transition duration-500 cursor-pointer hover:scale-75"
             to={`/detail/${maPhim}`}
           >
             Detail
@@ -48,7 +52,7 @@ export default function ListMovie() {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 3,
     initialSlide: 0,
     responsive: [

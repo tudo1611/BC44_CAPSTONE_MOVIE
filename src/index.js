@@ -7,11 +7,17 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import userSlice from "./redux/userSlice";
 import spinnerSlice from "./redux/spinnerSlice";
+import movieSlice from "./redux/movieSlice";
+import setBooking from "./redux/bookingSlice";
+import setDetail from "./redux/detailSlice";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export let store = configureStore({
   reducer: {
     userSlice: userSlice,
     spinnerSlice,
+    setBooking,
+    movieSlice,
+    setDetail,
   },
 });
 

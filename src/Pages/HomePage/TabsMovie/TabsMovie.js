@@ -3,20 +3,14 @@ import { https } from "../../../service/config";
 import { Tabs } from "antd";
 import moment from "moment/moment";
 import { NavLink } from "react-router-dom";
-import Checkout from "../../Checkout/Checkout";
 const onChange = (key) => {
   console.log(key);
 };
 
 export default function TabsMovie() {
-  // const localSignUp = localStorage.getItem("signUp");
-  // const [showCheckout, setShowCheckout] = useState(false);
-
   const [heThongRap, setHeThongRap] = useState([]);
   // /api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01
   useEffect(() => {
-    // if(localSignUp){
-    //   setShowCheckout(true);
     // }
     https
       .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01")
@@ -40,12 +34,12 @@ export default function TabsMovie() {
           />
           <div className="col-span-4">
             <div className="grid grid-cols-4 w-full gap-3">
-              {phim.lstLichChieuTheoPhim.map((lichChieu) => {
+              {phim.lstLichChieuTheoPhim.map((lichChieu, maLichChieu) => {
                 //moment js
                 return (
                   <NavLink
-                    to={"/checkout"}
-                    key={lichChieu.maLichChieu}
+                    to={`/checkout/${maLichChieu}`}
+                    key={maLichChieu}
                     className=" bg-green-400 text-white rounded h-10 leading-10 text-center "
                   >
                     {moment(lichChieu.ngayChieuGioChieu).format(

@@ -13,8 +13,4 @@ export let localServ = {
     //xóa
     localStorage.removeItem("USER_LOGIN");
   },
-  setUserSignUp: (user) => {
-    let dataJson = JSON.stringify(user);
-    localStorage.setItem("USER_SIGNUP", dataJson);
-  },
 };
