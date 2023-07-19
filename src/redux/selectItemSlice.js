@@ -1,13 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {};
+const initialState = {
+  selectedSeat: [],
+};
 
 const selectItemSlice = createSlice({
-  name: "selectItemSlice",
+  name: "items",
   initialState,
-  reducers: {},
+  reducers: {
+    selectItem: (state, action) => {
+      state.selectedSeat.push(action.payload);
+    },
+    deselectItem: (state, action) => {
+      state.selectedSeat = state.selectedSeat.filter(
+        (item) => item == action.payload
+      );
+    },
+  },
 });
 
-export const {} = selectItemSlice.actions;
+export const { selectItem, deselectItem } = selectItemSlice.actions;
 
 export default selectItemSlice.reducer;

@@ -5,22 +5,21 @@ import { CloseOutlined } from "@ant-design/icons";
 import "./Checkout.css";
 import { https } from "../../service/config";
 import { useParams } from "react-router-dom";
-import { setBooking, setDatGhe } from "../../redux/bookingSlice";
+import { setBooking } from "../../redux/bookingSlice";
+import { selectItem, deselectItem } from "../../redux/selectItemSlice";
 export default function Checkout() {
   const user = useSelector((state) => state.userSlice.userInfo);
-  const { ticketDetail, danhSachGheDangDat } = useSelector(
-    (state) => state.setBooking
-  );
-  let { maLichChieu } = useParams();
+  const { ticketDetail } = useSelector((state) => state.setBooking);
+  const { selectedSeat } = useSelector((state) => state.selectItem);
   const [checkout, setCheckout] = useState({});
   const { thongTinPhim, danhSachGhe } = ticketDetail;
+  let { maLichChieu } = useParams();
 
   const dispatch = useDispatch();
   useEffect(() => {
     https
       .get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
       .then((res) => {
-        console.log("res_malichchieu: ", res);
         setCheckout(res.data.content);
         dispatch(setBooking(res.data.content));
       })
@@ -28,7 +27,18 @@ export default function Checkout() {
         console.log("err: ", err);
       });
   }, []);
-  console.log(danhSachGheDangDat);
+  useEffect(() => {}, [danhSachGhe]);
+
+  const handleItemClick = (item) => {
+    console.log({ item, selectedSeat });
+    console.log(selectedSeat.includes(item));
+    if (selectedSeat.includes(item)) {
+      dispatch(deselectItem(item));
+    } else {
+      dispatch(selectItem(item));
+    }
+  };
+
   const renderSeats = () => {
     return danhSachGhe.map((item, index) => {
       let classGheVip = item.loaiGhe === "Vip" ? "gheVip" : "";
@@ -37,7 +47,7 @@ export default function Checkout() {
         <Fragment key={index}>
           <button
             onClick={() => {
-              dispatch(setDatGhe(item));
+              handleItemClick(item);
             }}
             disabled={item.daDat}
             className={`ghe ${classGheVip} ${classGheDaDat} text-center`}

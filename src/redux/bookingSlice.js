@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   ticketDetail: { thongTinPhim: {}, danhSachGhe: [] },
-  danhSachGheDangDat: [],
 };
 
 const bookingSlice = createSlice({
@@ -12,12 +11,9 @@ const bookingSlice = createSlice({
     setBooking: (state, action) => {
       state.ticketDetail = action.payload;
     },
-    setDatGhe: (state, action) => {
-      state.danhSachGheDangDat = action.payload;
-    },
   },
 });
 
-export const { setBooking, setDatGhe } = bookingSlice.actions;
+export const { setBooking } = bookingSlice.actions;
 
 export default bookingSlice.reducer;
