@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const selectItemSlice = createSlice({
-  name: "items",
+  name: "selectItemSlice",
   initialState,
   reducers: {
     selectItem: (state, action) => {

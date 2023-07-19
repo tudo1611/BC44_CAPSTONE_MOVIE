@@ -8,9 +8,9 @@ import { useParams } from "react-router-dom";
 import { setBooking } from "../../redux/bookingSlice";
 import { selectItem, deselectItem } from "../../redux/selectItemSlice";
 export default function Checkout() {
-  const user = useSelector((state) => state.userSlice.userInfo);
+  const user = useSelector((state) => state.userSlice.userInfo); //user = userInfo
+  const selectedSeat = useSelector((state) => state.selectItem.selectedSeat);
   const { ticketDetail } = useSelector((state) => state.setBooking);
-  const { selectedSeat } = useSelector((state) => state.selectItem);
   const [checkout, setCheckout] = useState({});
   const { thongTinPhim, danhSachGhe } = ticketDetail;
   let { maLichChieu } = useParams();
