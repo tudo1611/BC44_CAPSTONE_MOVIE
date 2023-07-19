@@ -7,19 +7,14 @@ import { https } from "../../service/config";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../redux/userSlice";
 import { localServ } from "../../service/localStoreService";
-import "../../Pages/Checkout/Checkout.css";
+import "../../Pages/Checkout/Checkout.module.css";
+import { setUserRegis } from "../../redux/regisSlice";
 
 const onFinishFailed = (errorInfo) => {
   console.log("Failed:", errorInfo);
 };
 
 const Register = () => {
-  //   const [name, setName] = useState("");
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [phone, setPhone] = useState("");
-  //   const [groupCode, setGroupCode] = useState("");
-  //   const [fullName, setFullName] = useState("");
   const [showHome, setShowHome] = useState(false);
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
@@ -33,8 +28,8 @@ const Register = () => {
       .post("/api/QuanLyNguoiDung/DangKy", values)
       .then((res) => {
         console.log("res: ", res);
-        dispatch(setLogin(res.data.content));
-        localServ.setLogin(res.data.content);
+        dispatch(setUserRegis(res.data.content));
+        // localServ.setLogin(res.data.content);
         console.log("Success:", values);
       })
       .catch((err) => {

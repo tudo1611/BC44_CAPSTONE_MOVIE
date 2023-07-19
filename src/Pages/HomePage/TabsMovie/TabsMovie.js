@@ -13,7 +13,7 @@ export default function TabsMovie() {
   useEffect(() => {
     // }
     https
-      .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP01")
+      .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP08")
       .then((res) => {
         // console.log("res: ", res);
         setHeThongRap(res.data.content);
@@ -34,20 +34,20 @@ export default function TabsMovie() {
           />
           <div className="col-span-4">
             <div className="grid grid-cols-4 w-full gap-3">
-              {phim.lstLichChieuTheoPhim.map((lichChieu, maLichChieu) => {
-                //moment js
-                return (
-                  <NavLink
-                    to={`/checkout/${maLichChieu}`}
-                    key={maLichChieu}
-                    className=" bg-green-400 text-white rounded h-10 leading-10 text-center "
-                  >
-                    {moment(lichChieu.ngayChieuGioChieu).format(
-                      "DD/MM/YY-hh:mm"
-                    )}
-                  </NavLink>
-                );
-              })}
+              {phim.lstLichChieuTheoPhim.map(
+                ({ maLichChieu, ngayChieuGioChieu }) => {
+                  //moment js
+                  return (
+                    <NavLink
+                      to={`/checkout/${maLichChieu}`}
+                      key={maLichChieu}
+                      className=" bg-green-400 text-white rounded h-10 leading-10 text-center "
+                    >
+                      {moment(ngayChieuGioChieu).format("DD/MM/YY-hh:mm")}
+                    </NavLink>
+                  );
+                }
+              )}
             </div>
           </div>
         </div>

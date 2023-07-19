@@ -10,6 +10,8 @@ import spinnerSlice from "./redux/spinnerSlice";
 import movieSlice from "./redux/movieSlice";
 import setBooking from "./redux/bookingSlice";
 import setDetail from "./redux/detailSlice";
+import setUserRegis from "./redux/regisSlice";
+import setDatGhe from "./redux/bookingSlice";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export let store = configureStore({
   reducer: {
@@ -18,6 +20,8 @@ export let store = configureStore({
     setBooking,
     movieSlice,
     setDetail,
+    setUserRegis,
+    setDatGhe,
   },
 });
 

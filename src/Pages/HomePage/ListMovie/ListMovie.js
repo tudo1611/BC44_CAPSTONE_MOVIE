@@ -13,7 +13,7 @@ export default function ListMovie() {
   const dispatch = useDispatch();
   useEffect(() => {
     https
-      .get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01")
+      .get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP08")
       .then((res) => {
         console.log("res: ", res);
         setMovieArr(res.data.content);
