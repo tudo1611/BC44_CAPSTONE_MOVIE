@@ -34,9 +34,12 @@ export default function Banner() {
         <div key={maBanner}>
           <div
             className="bg-cover"
-            style={{ ...contentStyle, backgroundImage: `url(${hinhAnh})` }}
+            style={{
+              ...contentStyle,
+              backgroundImage: `url(${hinhAnh})`,
+            }}
           >
-            <img src={hinhAnh} className="w-full  opacity-0" alt={hinhAnh} />
+            {/* <img src={hinhAnh} className="w-full  opacity-0" alt={hinhAnh} /> */}
           </div>
         </div>
       );

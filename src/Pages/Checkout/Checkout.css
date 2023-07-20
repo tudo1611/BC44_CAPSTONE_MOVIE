@@ -71,15 +71,15 @@
 
   cursor: pointer;
   border-radius: 5px;
-  width: 45px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 .glassmorphism {
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.18);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.4px);
-  -webkit-backdrop-filter: blur(5.4px);
+  backdrop-filter: blur(7.4px);
+  -webkit-backdrop-filter: blur(7.4px);
   border: 1px solid rgba(255, 255, 255, 0.56);
   height: 100vh;
 }

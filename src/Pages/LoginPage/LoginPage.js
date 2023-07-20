@@ -37,49 +37,60 @@ export default function LoginPage() {
       });
   };
   return (
-    <div className="bg-green-300 h-screen flex items-center justify-center">
-      <div className="container p-10 bg-white rounded flex">
-        <div className="w-1/2 h-full">
-          <Lottie animationData={bgAnimate} loop={true} />
-        </div>
-        <div className="w-1/2 h-full">
-          <Form
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            style={{ maxWidth: 600 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
+    <div
+      style={{
+        backgroundPosition: "center",
+        objectFit: "cover",
+        backgroundImage: "url('./bgLoginPage1.jpg')",
+        position: "fixed",
+        width: "100%",
+        height: "100%",
+      }}
+      className="p-10 grid grid-cols-4 gap-5  h-screen w-screen items-center justify-center"
+    >
+      <div className="col-span-2 h-full">
+        <Lottie animationData={bgAnimate} loop={true} />
+      </div>
+      <div
+        style={{
+          background: "rgb(200,232,188)",
+          background:
+            "linear-gradient(45deg, rgba(200,232,188,1) 18%, rgba(11,238,83,0.9360994397759104) 46%, rgba(66,224,185,0.9529061624649859) 76%)",
+        }}
+        className=" bg-white col-span-2 mx-20 p-10 rounded-lg"
+      >
+        <Form
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 14 }}
+          style={{ maxWidth: 800 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item
+            label="Username"
+            name="taiKhoan"
+            rules={[{ required: true, message: "Please input your username!" }]}
           >
-            <Form.Item
-              label="Username"
-              name="taiKhoan"
-              rules={[
-                { required: true, message: "Please input your username!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+            <Input />
+          </Form.Item>
 
-            <Form.Item
-              label="Password"
-              name="matKhau"
-              rules={[
-                { required: true, message: "Please input your password!" },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
+          <Form.Item
+            label="Password"
+            name="matKhau"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button className="bg-green-300 hover:bg-white" htmlType="submit">
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
-        </div>
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Button className="bg-green-300 hover:bg-white" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
       </div>
     </div>
   );

@@ -89,7 +89,7 @@ export default function ListMovie() {
       </button>
       <button
         type="button"
-        className="px-8 py-3 font-semibold border rounded dark:border-gray-100 dark:text-gray-100"
+        className="px-8 py-3 font-semibold rounded bg-gray-300 text-gray-800"
       >
         Phim Sắp Chiếu
       </button>

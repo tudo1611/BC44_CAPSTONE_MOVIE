@@ -27,11 +27,8 @@ export default function Checkout() {
         console.log("err: ", err);
       });
   }, []);
-  useEffect(() => {}, [danhSachGhe]);
-
+  console.log(danhSachGhe);
   const handleItemClick = (item) => {
-    console.log({ item, selectedSeat });
-    console.log(selectedSeat.includes(item));
     if (selectedSeat.includes(item)) {
       dispatch(deselectItem(item));
     } else {
@@ -43,6 +40,15 @@ export default function Checkout() {
     return danhSachGhe.map((item, index) => {
       let classGheVip = item.loaiGhe === "Vip" ? "gheVip" : "";
       let classGheDaDat = item.daDat === true ? "gheDaDat" : "";
+      let classGheDangDat = "";
+
+      let indexGheDD = selectedSeat.findIndex(
+        (gheDD) => gheDD.maGhe === item.maGhe
+      );
+      if (indexGheDD !== -1) {
+        classGheDaDat = "gheDangDat";
+      }
+
       return (
         <Fragment key={index}>
           <button
@@ -50,7 +56,7 @@ export default function Checkout() {
               handleItemClick(item);
             }}
             disabled={item.daDat}
-            className={`ghe ${classGheVip} ${classGheDaDat} text-center`}
+            className={`ghe ${classGheVip}${classGheDangDat} ${classGheDaDat} text-center`}
             key={index}
           >
             {item.daDat ? (
@@ -106,6 +112,17 @@ export default function Checkout() {
               className="text-green-400 text-2xl text-center"
               style={{ fontWeight: "bold" }}
             >
+              {selectedSeat
+                .reduce((total, item, index) => {
+                  return (total += item.giaVe);
+                }, 0)
+                .toLocaleString()}
+            </h3>
+            <hr />
+            <h3
+              className="text-green-400 text-2xl text-center"
+              style={{ fontWeight: "bold" }}
+            >
               {thongTinPhim.tenPhim}
             </h3>
             <p>Địa điểm: {thongTinPhim.diaChi} </p>
@@ -116,10 +133,24 @@ export default function Checkout() {
             <hr />
             <div className="flex flex-row my-3">
               <div className="w-4/5">
-                <span className="text-green-400 text-lg">Ghế</span>
+                <span className="text-red-700 text-lg">Ghế</span>
+                {selectedSeat.map((gheDD, index) => {
+                  return (
+                    <span key={index} className="text-red-700 text-xl">
+                      {" "}
+                      {gheDD.stt}
+                    </span>
+                  );
+                })}
               </div>
               <div className="text-right col-span-1">
-                <span className="text-green-400 text-lg">0đ</span>
+                <span className="text-red-700 text-lg">
+                  {selectedSeat
+                    .reduce((total, item, index) => {
+                      return (total += item.giaVe);
+                    }, 0)
+                    .toLocaleString()}
+                </span>
               </div>
             </div>
             <hr />
