@@ -13,6 +13,7 @@ export default function Checkout() {
   const { ticketDetail } = useSelector((state) => state.setBooking);
   const [checkout, setCheckout] = useState({});
   const { thongTinPhim, danhSachGhe } = ticketDetail;
+  console.log("thongTinPhim: ", thongTinPhim);
   let { maLichChieu } = useParams();
 
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function Checkout() {
     https
       .get(`/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${maLichChieu}`)
       .then((res) => {
+        console.log("res: ", res);
         setCheckout(res.data.content);
         dispatch(setBooking(res.data.content));
       })
@@ -37,7 +39,7 @@ export default function Checkout() {
   };
 
   const renderSeats = () => {
-    return danhSachGhe.map((item, index) => {
+    return danhSachGhe?.map((item, index) => {
       let classGheVip = item.loaiGhe === "Vip" ? "gheVip" : "";
       let classGheDaDat = item.daDat === true ? "gheDaDat" : "";
       let classGheDangDat = "";
@@ -75,7 +77,7 @@ export default function Checkout() {
   return (
     <div
       style={{
-        backgroundImage: `url(${thongTinPhim.hinhAnh})`,
+        backgroundImage: `url(${thongTinPhim?.hinhAnh})`,
         backgroundPosition: "center",
         objectFit: "cover",
         height: "100vh",
@@ -123,13 +125,13 @@ export default function Checkout() {
               className="text-green-400 text-2xl text-center"
               style={{ fontWeight: "bold" }}
             >
-              {thongTinPhim.tenPhim}
+              {thongTinPhim?.tenPhim}
             </h3>
-            <p>Địa điểm: {thongTinPhim.diaChi} </p>
-            <p>Cụm Rạp: {thongTinPhim.tenCumRap}</p>
-            <p>Tên Rạp: {thongTinPhim.tenRap}</p>
-            <p>Ngày chiếu: {thongTinPhim.ngayChieu}</p>
-            <p>Giờ chiếu: {thongTinPhim.gioChieu}</p>
+            <p>Địa điểm: {thongTinPhim?.diaChi} </p>
+            <p>Cụm Rạp: {thongTinPhim?.tenCumRap}</p>
+            <p>Tên Rạp: {thongTinPhim?.tenRap}</p>
+            <p>Ngày chiếu: {thongTinPhim?.ngayChieu}</p>
+            <p>Giờ chiếu: {thongTinPhim?.gioChieu}</p>
             <hr />
             <div className="flex flex-row my-3">
               <div className="w-4/5">

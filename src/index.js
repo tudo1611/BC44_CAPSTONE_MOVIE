@@ -5,6 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import userSlice from "./redux/userSlice";
 import spinnerSlice from "./redux/spinnerSlice";
 import movieSlice from "./redux/movieSlice";
@@ -13,6 +15,7 @@ import setDetail from "./redux/detailSlice";
 import setUserRegis from "./redux/regisSlice";
 import selectItem from "./redux/selectItemSlice";
 import deselectItem from "./redux/selectItemSlice";
+import setHTR from "./redux/setArrHTRSlice";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export let store = configureStore({
   reducer: {
@@ -24,6 +27,7 @@ export let store = configureStore({
     setUserRegis,
     selectItem,
     deselectItem,
+    setHTR,
   },
 });
 

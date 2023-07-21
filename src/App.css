@@ -3,10 +3,10 @@
 }
 
 .slick-slide > div {
-  margin: 0 20px;
+  margin: 0 24px;
 }
 .slick-list {
-  margin: 0 -20px;
+  margin: 0 -24px;
 }
 .App-logo {
   height: 40vmin;

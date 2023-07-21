@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  ticketDetail: { thongTinPhim: {}, danhSachGhe: [] },
+  ticketDetail: {
+    thongTinPhim: {},
+
+    danhSachGhe: [],
+  },
 };
 
 const bookingSlice = createSlice({

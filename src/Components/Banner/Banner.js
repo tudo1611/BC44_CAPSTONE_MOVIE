@@ -4,13 +4,10 @@ import { Carousel } from "antd";
 import { useDispatch } from "react-redux";
 import { addBanner } from "../../redux/bannerSlice";
 const contentStyle = {
-  height: "580px",
+  height: "600px",
   color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
   backgroundPosition: "center",
-  backgroundSize: "100%",
+  backgroundSize: "cover",
   backgroundRepeat: "no-repeat",
 };
 export default function Banner() {
@@ -22,7 +19,7 @@ export default function Banner() {
       .then((res) => {
         console.log("res: ", res);
         setBanner(res.data.content);
-        dispatch(addBanner(res.data));
+        dispatch(addBanner(res.data.content));
       })
       .catch((err) => {
         console.log("err: ", err);
@@ -32,14 +29,8 @@ export default function Banner() {
     return banner.map(({ hinhAnh, maBanner }) => {
       return (
         <div key={maBanner}>
-          <div
-            className="bg-cover"
-            style={{
-              ...contentStyle,
-              backgroundImage: `url(${hinhAnh})`,
-            }}
-          >
-            {/* <img src={hinhAnh} className="w-full  opacity-0" alt={hinhAnh} /> */}
+          <div style={{ ...contentStyle, backgroundImage: `url(${hinhAnh})` }}>
+            <img src={hinhAnh} className="w-screen opacity-0" />
           </div>
         </div>
       );
@@ -47,9 +38,7 @@ export default function Banner() {
   };
   return (
     <div>
-      <Carousel autoplay effect="fade">
-        {renderBanner()}
-      </Carousel>
+      <Carousel autoplay>{renderBanner()}</Carousel>
     </div>
   );
 }

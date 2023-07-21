@@ -7,7 +7,7 @@ import Footer from "../../Components/Footer/Footer";
 
 export default function HomePage() {
   return (
-    <div className="bg-gray-600">
+    <div className="bg-gray-800">
       <Header />
       <Banner />
       <ListMovie />
