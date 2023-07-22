@@ -59,15 +59,22 @@ const Register = () => {
             position: "fixed",
             width: "100%",
             height: "100%",
-            backgroundImage: "url('./bgmovie.jpg')",
+            backgroundImage: "url('./bgRes.jpg')",
             backgroundSize: "100%",
           }}
-          className="bg-green-300 h-screen w-screen flex flex-col items-center justify-center"
+          className=" flex flex-col items-end justify-center "
         >
-          <div className=" bg-white w-80 rounded-2xl py-5 flex flex-col items-center justify-center">
+          <div
+            style={{
+              position: "absolute",
+              right: 70,
+              backgroundColor: "#2ec4b6",
+            }}
+            className=" w-80 rounded-2xl py-3 flex flex-col justify-center items-center"
+          >
             <h3
-              className="text-green-600 mb-5"
-              style={{ fontSize: "30px", fontWeight: "bold" }}
+              className="mb-3"
+              style={{ fontSize: "30px", fontWeight: "bold", color: "#e71d36" }}
             >
               REGISTER
             </h3>
@@ -170,8 +177,11 @@ const Register = () => {
                 }}
               >
                 <Button
-                  className="bg-green-500"
-                  style={{ fontWeight: "bold" }}
+                  style={{
+                    fontWeight: "bold",
+                    backgroundColor: "#e71d36",
+                    color: "#2ec4b6",
+                  }}
                   htmlType="submit"
                 >
                   Sign Up
@@ -182,8 +192,12 @@ const Register = () => {
               Already have an account?{" "}
               <NavLink to={"/login"}>
                 <span
-                  className="text-green-500 ml-5"
-                  style={{ fontWeight: "bold", fontSize: "20px" }}
+                  className=" ml-5"
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "20px",
+                    color: "#e71d36",
+                  }}
                 >
                   Sign in
                 </span>

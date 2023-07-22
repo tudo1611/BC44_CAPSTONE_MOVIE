@@ -7,6 +7,8 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import { Container } from "react-bootstrap";
 import userSlice from "./redux/userSlice";
 import spinnerSlice from "./redux/spinnerSlice";
 import movieSlice from "./redux/movieSlice";

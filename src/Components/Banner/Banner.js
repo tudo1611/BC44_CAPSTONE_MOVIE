@@ -17,7 +17,7 @@ export default function Banner() {
     https
       .get("/api/QuanLyPhim/LayDanhSachBanner")
       .then((res) => {
-        console.log("res: ", res);
+        console.log("resBanner: ", res);
         setBanner(res.data.content);
         dispatch(addBanner(res.data.content));
       })

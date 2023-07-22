@@ -1,7 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userRegis: null,
+  userRegis: {
+    taiKhoan: "",
+    matKhau: "",
+    email: "",
+    soDt: "",
+    maNhom: "",
+    hoTen: "",
+  },
 };
 
 const regisSlice = createSlice({

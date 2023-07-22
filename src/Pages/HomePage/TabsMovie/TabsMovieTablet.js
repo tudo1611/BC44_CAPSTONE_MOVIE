@@ -44,7 +44,7 @@ export default function TabsMovieTablet() {
                     <NavLink
                       to={`/checkout/${maLichChieu}`}
                       key={maLichChieu}
-                      className=" bg-green-400 text-white h-10 leading-10 text-center "
+                      className=" bg-green-400 text-white py-1 rounded text-center "
                     >
                       {moment(ngayChieuGioChieu).format("DD/MM/YY-hh:mm")}
                     </NavLink>

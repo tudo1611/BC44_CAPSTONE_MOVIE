@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import Slider from "react-slick";
 import { useDispatch } from "react-redux";
 import { addMovies } from "../../../redux/movieSlice";
+import ReactPlayer from "react-player";
 const { Meta } = Card;
 export default function ListMovie() {
   const [movieArr, setMovieArr] = useState([]);
@@ -15,7 +16,7 @@ export default function ListMovie() {
     https
       .get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP03")
       .then((res) => {
-        console.log("res: ", res);
+        console.log("resListMovie: ", res);
         setMovieArr(res.data.content);
         dispatch(addMovies(res.data.content));
       })
@@ -26,18 +27,29 @@ export default function ListMovie() {
   let renderMovieList = () => {
     return movieArr
       .filter((movie) => movie.tenPhim.toLowerCase().includes(query))
-      .map(({ hinhAnh, tenPhim, maPhim, moTa }) => {
+      .map(({ hinhAnh, tenPhim, maPhim, moTa, trailer }) => {
         return (
           <Card
+            bodyStyle={{ padding: 0 }}
+            size="default"
             key={maPhim}
             className="shadow-xl mt-10 rounded"
-            hoverable
-            cover={<img className="h-60" alt="example" src={hinhAnh} />}
+            cover={
+              <ReactPlayer
+                muted={true}
+                playing={true}
+                controls={true}
+                light={`${hinhAnh}`}
+                width={"100%"}
+                height={270}
+                url={trailer}
+              />
+            }
           >
             <Meta
               style={{ fontSize: "12px" }}
               title={tenPhim}
-              className="text-center pb-2"
+              className="text-center p-2 bg-gray-300"
               description={
                 moTa.length > 20 ? (
                   <span>{moTa.slice(0, 20)}...</span>
@@ -92,6 +104,7 @@ export default function ListMovie() {
   return (
     <div className="container" style={{ width: "70%", margin: "40px auto" }}>
       <br />
+
       <Input
         className="search w-80"
         placeholder="Search film by name..."
