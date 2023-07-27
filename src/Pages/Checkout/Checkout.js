@@ -1,9 +1,9 @@
 import React from "react";
 import { Desktop, Tablet, Mobile } from "../../responsive/responsive";
 import CheckoutDesktop from "./CheckoutDesktop";
-import CheckoutTable from "./CheckoutTable";
+import CheckoutTablet from "./CheckoutTablet";
 import CheckoutMobile from "./CheckoutMobile";
-
+import { BackTop } from "antd";
 export default function Checkout() {
   return (
     <div>
@@ -11,11 +11,12 @@ export default function Checkout() {
         <CheckoutDesktop />
       </Desktop>
       <Tablet>
-        <CheckoutTable />
+        <CheckoutTablet />
       </Tablet>
       <Mobile>
         <CheckoutMobile />
       </Mobile>
+      <BackTop />
     </div>
   );
 }

@@ -1,14 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { localServ } from "../service/localStoreService";
 
 const initialState = {
-  userRegis: {
-    taiKhoan: "",
-    matKhau: "",
-    email: "",
-    soDt: "",
-    maNhom: "",
-    hoTen: "",
-  },
+  userRegis: localServ.getUser(),
 };
 
 const regisSlice = createSlice({

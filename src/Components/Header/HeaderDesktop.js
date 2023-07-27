@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 
 export default function HeaderDesktop() {
   return (
-    <header className="p-1 dark:bg-gray-800 dark:text-gray-100 text-xl font-bold bg-black bg-opacity-40 text-green-500 fixed w-full z-10">
+    <header className="p-1 dark:bg-gray-800 dark:text-gray-100 text-xl  bg-black bg-opacity-40 text-green-500 fixed w-full z-10">
       <div className="container flex justify-between h-16 mx-auto items-center">
-        <span className="text-3xl font-bold text-green-500"> MyFlix</span>
+        <div className="flex flex-col justify-center items-center">
+          <img src="./logoHeader1.png" className="w-20 p-1" alt="" />
+        </div>
         <ul className="items-stretch hidden space-x-3 lg:flex">
           <li className="flex">
             <NavLink

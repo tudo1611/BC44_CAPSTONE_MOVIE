@@ -15,7 +15,7 @@ export default function TabsMovieTablet() {
   useEffect(() => {
     // }
     https
-      .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP08")
+      .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP07")
       .then((res) => {
         // console.log("res: ", res);
         setHeThongRap(res.data.content);
@@ -42,9 +42,16 @@ export default function TabsMovieTablet() {
                   //moment js
                   return (
                     <NavLink
+                      style={{
+                        backgroundColor: "rgb(200,232,188)",
+                        background:
+                          "linear-gradient(45deg, rgba(200,232,188,1) 18%, rgba(11,238,83,0.9360994397759104) 46%, rgba(66,224,185,0.9529061624649859) 76%)",
+                        opacity: 0.8,
+                        color: "black",
+                      }}
                       to={`/checkout/${maLichChieu}`}
                       key={maLichChieu}
-                      className=" bg-green-400 text-white py-1 rounded text-center "
+                      className=" py-1 rounded text-center "
                     >
                       {moment(ngayChieuGioChieu).format("DD/MM/YY-hh:mm")}
                     </NavLink>
@@ -77,7 +84,7 @@ export default function TabsMovieTablet() {
                     <p className="text-green-600 font-bold">
                       {cumRap.tenCumRap}
                     </p>
-                    <p className="truncate">{cumRap.diaChi}</p>
+                    <p className="truncate text-white">{cumRap.diaChi}</p>
                   </div>
                 ),
                 children: renderDsPhim(cumRap.danhSachPhim),

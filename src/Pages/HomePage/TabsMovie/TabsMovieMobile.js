@@ -15,7 +15,7 @@ export default function TabsMovieMobile() {
   useEffect(() => {
     // }
     https
-      .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP08")
+      .get("/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maNhom=GP07")
       .then((res) => {
         // console.log("res: ", res);
         setHeThongRap(res.data.content);
@@ -74,7 +74,7 @@ export default function TabsMovieMobile() {
                     <p className="text-green-600 font-bold">
                       {cumRap.tenCumRap}
                     </p>
-                    <p className="truncate">{cumRap.diaChi}</p>
+                    <p className="truncate text-white">{cumRap.diaChi}</p>
                   </div>
                 ),
                 children: renderDsPhim(cumRap.danhSachPhim),

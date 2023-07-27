@@ -14,9 +14,8 @@ export default function ListMovie() {
   const dispatch = useDispatch();
   useEffect(() => {
     https
-      .get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP03")
+      .get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP07")
       .then((res) => {
-        console.log("resListMovie: ", res);
         setMovieArr(res.data.content);
         dispatch(addMovies(res.data.content));
       })
@@ -30,10 +29,9 @@ export default function ListMovie() {
       .map(({ hinhAnh, tenPhim, maPhim, moTa, trailer }) => {
         return (
           <Card
-            bodyStyle={{ padding: 0 }}
-            size="default"
+            size="small"
             key={maPhim}
-            className="shadow-xl mt-10 rounded"
+            className="mt-10 rounded border-none"
             cover={
               <ReactPlayer
                 muted={true}
@@ -49,7 +47,7 @@ export default function ListMovie() {
             <Meta
               style={{ fontSize: "12px" }}
               title={tenPhim}
-              className="text-center p-2 bg-gray-300"
+              className="text-center p-2 rounded  border-transparent"
               description={
                 moTa.length > 20 ? (
                   <span>{moTa.slice(0, 20)}...</span>
@@ -59,7 +57,14 @@ export default function ListMovie() {
               }
             />
             <NavLink
-              className="w-full inline-block text-center py-2 m-0 bg-green-400 text-black transition duration-500 cursor-pointer hover:scale-75"
+              style={{
+                backgroundColor: "rgb(200,232,188)",
+                background:
+                  "linear-gradient(45deg, rgba(200,232,188,1) 18%, rgba(11,238,83,0.9360994397759104) 46%, rgba(66,224,185,0.9529061624649859) 76%)",
+                opacity: 0.8,
+                color: "black",
+              }}
+              className="w-full inline-block text-center py-2 m-0 rounded  transition duration-500 cursor-pointer hover:scale-75"
               to={`/detail/${maPhim}`}
             >
               Detail
@@ -69,11 +74,11 @@ export default function ListMovie() {
       });
   };
   const settings = {
-    className: "center variable-width",
+    className: "container ",
     centerMode: false,
     infinite: false,
-    centerPadding: "60px",
-    slidesToShow: 3,
+    centerPadding: "30px",
+    slidesToShow: 4,
     speed: 500,
     rows: 2,
     responsive: [
@@ -102,11 +107,22 @@ export default function ListMovie() {
     ],
   };
   return (
-    <div className="container" style={{ width: "70%", margin: "40px auto" }}>
+    <div
+      className="py-10 "
+      style={{
+        width: "100%",
+        margin: "0 auto",
+        backgroundPosition: "center",
+        objectFit: "cover",
+        backgroundImage: "url('./bgLoginPage1.jpg')",
+        backgroundSize: "cover",
+        boxShadow: " inset 0 0 0 2000px rgba(0, 0, 0, 0.7)",
+      }}
+    >
       <br />
 
       <Input
-        className="search w-80"
+        className="search w-80 ml-32"
         placeholder="Search film by name..."
         onChange={(e) => setQuery(e.target.value)}
       />

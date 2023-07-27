@@ -42,7 +42,7 @@
 }
 
 .screen {
-  border-bottom: 50px solid rgb(255, 159, 95);
+  border-bottom: 20px solid rgb(255, 159, 95);
   border-left: 50px solid transparent;
   border-right: 50px solid transparent;
   height: 25;

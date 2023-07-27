@@ -3,7 +3,7 @@ import { Button, Form, Input, message } from "antd";
 import { https } from "../../service/config";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../redux/userSlice";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { localServ } from "../../service/localStoreService";
 import Lottie from "lottie-react";
 import bgAnimate from "./bg_animate.json";
@@ -89,12 +89,22 @@ export default function LoginDesktop() {
 
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button
-              style={{ fontWeight: "bold" }}
-              className="bg-green-400 hover:bg-white"
+              style={{ fontWeight: "bold", border: "1px solid #fff" }}
+              className="bg-green-400 hover:bg-white rounded"
               htmlType="submit"
             >
               Submit
             </Button>
+            <NavLink
+              style={{
+                fontWeight: "bold",
+                border: "1px solid #fff",
+              }}
+              className="bg-green-400 hover:bg-white ml-3 p-1.5 rounded"
+              to={"/register"}
+            >
+              SignUp Now
+            </NavLink>
           </Form.Item>
         </Form>
       </div>

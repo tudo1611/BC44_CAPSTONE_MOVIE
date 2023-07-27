@@ -5,7 +5,6 @@ import LoginPage from "../../Pages/LoginPage/LoginPage";
 import { NavLink } from "react-router-dom";
 import { https } from "../../service/config";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../../redux/userSlice";
 import { localServ } from "../../service/localStoreService";
 import "../../Pages/Checkout/Checkout.module.css";
 import { setUserRegis } from "../../redux/regisSlice";
@@ -21,23 +20,6 @@ const Register = () => {
 
   const localSignUp = localStorage.getItem("signUp");
   const localEmail = localStorage.getItem("email");
-  const onFinish = (values) => {
-    console.log("values: ", values);
-
-    https
-      .post("/api/QuanLyNguoiDung/DangKy", values)
-      .then((res) => {
-        console.log("res: ", res);
-        dispatch(setUserRegis(res.data.content));
-        // localServ.setLogin(res.data.content);
-        console.log("Success:", values);
-      })
-      .catch((err) => {
-        console.log("err: ", err);
-      });
-
-    //     window.location.reload();
-  };
   useEffect(() => {
     if (localSignUp) {
       setShowHome(true);
@@ -46,7 +28,25 @@ const Register = () => {
       setShow(true);
     }
   }, []);
+  const onFinish = (values) => {
+    console.log("values: ", values);
+    if (values) {
+      localServ.setUser(values);
+      localServ.getUser(values);
 
+      https
+        .post("/api/QuanLyNguoiDung/DangKy", values)
+        .then((res) => {
+          console.log("res: ", res);
+          dispatch(setUserRegis(res.data.content));
+          console.log("Success:", values);
+        })
+        .catch((err) => {
+          console.log("err: ", err);
+        });
+      window.location.reload();
+    }
+  };
   return (
     <div>
       {showHome ? (
@@ -68,7 +68,10 @@ const Register = () => {
             style={{
               position: "absolute",
               right: 70,
-              backgroundColor: "#2ec4b6",
+              backgroundColor: "rgb(200,232,188)",
+              background:
+                "linear-gradient(45deg, rgba(200,232,188,1) 18%, rgba(11,238,83,0.9360994397759104) 46%, rgba(66,224,185,0.9529061624649859) 76%)",
+              opacity: 0.8,
             }}
             className=" w-80 rounded-2xl py-3 flex flex-col justify-center items-center"
           >

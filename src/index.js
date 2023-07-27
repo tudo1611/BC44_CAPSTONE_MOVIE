@@ -18,6 +18,9 @@ import setUserRegis from "./redux/regisSlice";
 import selectItem from "./redux/selectItemSlice";
 import deselectItem from "./redux/selectItemSlice";
 import setHTR from "./redux/setArrHTRSlice";
+import setTicketBooking from "./redux/ticketBookingSlice";
+import setHistoryBooking from "./redux/historyBookingSlice";
+import setTabsActive from "./redux/historyBookingSlice";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export let store = configureStore({
   reducer: {
@@ -30,6 +33,9 @@ export let store = configureStore({
     selectItem,
     deselectItem,
     setHTR,
+    setTicketBooking,
+    setHistoryBooking,
+    setTabsActive,
   },
 });
 

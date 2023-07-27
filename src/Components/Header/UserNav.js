@@ -4,7 +4,7 @@ import { localServ } from "../../service/localStoreService";
 
 export default function UserNav() {
   let user = useSelector((state) => state.userSlice.userInfo);
-  let btnClass = "px-5 py-2 rounded border border-black";
+  let btnClass = "px-5 py-1 rounded-lg ";
   let handleLogout = () => {
     localServ.removeUser();
     window.location.reload();
@@ -14,8 +14,29 @@ export default function UserNav() {
       //đã đăng nhập
       return (
         <>
-          <span>{user.hoTen}</span>
-          <button onClick={handleLogout} className={btnClass}>
+          <span
+            style={{
+              backgroundColor: "rgb(200,232,188)",
+              background:
+                "linear-gradient(45deg, rgba(200,232,188,1) 18%, rgba(11,238,83,0.9360994397759104) 46%, rgba(66,224,185,0.9529061624649859) 76%)",
+              opacity: 0.8,
+              color: "black",
+            }}
+            className={btnClass}
+          >
+            {user.hoTen}
+          </span>
+          <button
+            style={{
+              backgroundColor: "rgb(200,232,188)",
+              background:
+                "linear-gradient(45deg, rgba(200,232,188,1) 18%, rgba(11,238,83,0.9360994397759104) 46%, rgba(66,224,185,0.9529061624649859) 76%)",
+              opacity: 0.8,
+              color: "black",
+            }}
+            onClick={handleLogout}
+            className={btnClass}
+          >
             Log out
           </button>
         </>
