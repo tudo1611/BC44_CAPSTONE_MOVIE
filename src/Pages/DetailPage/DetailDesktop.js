@@ -16,6 +16,7 @@ export default function DetailDesktop() {
 
   let { id } = useParams();
   // console.log("id", id);
+
   useEffect(() => {
     https
       .get(`/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`)

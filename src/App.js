@@ -10,13 +10,21 @@ import Checkout from "./Pages/Checkout/Checkout";
 import Spinner from "./Components/Spinner/Spinner";
 import Layout from "./Components/Layout/Layout";
 import Register from "./Components/Register/Register";
+import ProtectedRoute from "./util/ProtectedRoute";
 function App() {
   return (
     <div>
       <Spinner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<Register />} />
           <Route

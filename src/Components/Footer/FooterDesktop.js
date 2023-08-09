@@ -38,7 +38,7 @@ export default function FooterDesktop() {
                 </svg>
               </div>
               <span className="self-center text-green-400 text-2xl font-semibold">
-                My-Flix
+                cineMax
               </span>
             </a>
           </div>
